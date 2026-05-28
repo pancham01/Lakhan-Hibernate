@@ -5,11 +5,11 @@
 
 <hibernate-mapping>
 
-	<class name="com.hbn.entity.Employee">
+	<class name="com.hbn.entity.Employee" table="emp">
 
-		<id name="id">
+		<id name="id"><generator class="identity"></generator>
 		</id>
-		<property name="name"></property>
+		<property name="name" column="emp_name"></property>
 		<property name="gender"></property>
 		<property name="salary"></property>
 
