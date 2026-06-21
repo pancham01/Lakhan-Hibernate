@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class Address {
@@ -12,16 +13,29 @@ public class Address {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String city, state;
+	
+	@OneToOne(mappedBy = "address")
+	private Employee employee;
 
 	public Address() {
 		super();
 	}
 
-	public Address(int id, String city, String state) {
+	public Address(int id, String city, String state,Employee employee) {
 		super();
 		this.id = id;
 		this.city = city;
 		this.state = state;
+		this.employee = employee;
+	}
+
+	
+	public Employee getEmployee() {
+		return employee;
+	}
+
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
 	}
 
 	public int getId() {

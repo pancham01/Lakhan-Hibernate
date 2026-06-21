@@ -8,33 +8,54 @@ import com.hbn.entity.Address;
 import com.hbn.entity.Employee;
 
 public class Main {
+	
+	
+	public static void saveRecord(Session session) {
+		Transaction tx = session.beginTransaction();
 
-	public static void main(String[] args) {
-		
 		Address add1 = new Address();
-		add1.setCity("GZB");
+		add1.setCity("Noida");
 		add1.setState("UP");
 		
 
 		Employee e1 = new Employee();
-		e1.setName("Ashish");
+		e1.setName("Lakhan");
 		e1.setGender("male");
 		e1.setSalary(55000);
+		
+		
 		e1.setAddress(add1);
+		
+		add1.setEmployee(e1);
 
-		Session session = HibernateConfig.getSessionFactory().openSession();
-		Transaction tx = session.beginTransaction();
 		
-		
-		
-		session.persist(add1);
+//		session.persist(add1);
 		session.persist(e1);
 		
-		
-		
-		
 		tx.commit();
+	}
 
+	public static void main(String[] args) {
+
+		Session session = HibernateConfig.getSessionFactory().openSession();
+		
+//		saveRecord(session);	
+		
+		
+		Employee employee = session.find(Employee.class, 1);
+		System.out.println(employee);
+		System.out.println(employee.getAddress());
+		
+		
+//		Address address = session.find(Address.class, 1);
+//		System.out.println(address);
+//		System.out.println(address.getEmployee());
+		
+//		
+		
+		
+		
+	
 	}
 
 }
