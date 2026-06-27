@@ -42,12 +42,6 @@ public class Main {
 		e1.setAddress(listOfAdd);
 		
 		
-		
-
-		
-		session.persist(add1);
-		session.persist(add2);
-		session.persist(add3);
 		session.persist(e1);
 		
 		tx.commit();
