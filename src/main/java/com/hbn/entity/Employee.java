@@ -1,14 +1,13 @@
 package com.hbn.entity;
 
-import jakarta.persistence.CascadeType;
+
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Transient;
-
+import jakarta.persistence.OneToMany;
 
 
 
@@ -20,34 +19,34 @@ public class Employee {
 	private int id;
 	private String name, gender;
 	private int salary;
-	@Transient
-	private String country;
 	
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "add_id")
-	private Address address;
+	
+	@OneToMany
+	private List<Address> address;
+	
+	
+	
 
 	public Employee() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Employee(String name, String gender, int salary,Address address) {
+	public Employee(String name, String gender, int salary) {
 		super();
 		this.name = name;
 		this.gender = gender;
 		this.salary = salary;
-		this.address = address;
 	}
 
 	
 	
 	
-	public Address getAddress() {
+	public List<Address> getAddress() {
 		return address;
 	}
 
-	public void setAddress(Address address) {
+	public void setAddress(List<Address> address) {
 		this.address = address;
 	}
 
@@ -85,7 +84,8 @@ public class Employee {
 
 	@Override
 	public String toString() {
-		return "Employee [id=" + id + ", name=" + name + ", gender=" + gender + ", salary=" + salary +  "]";
+		return "Employee [id=" + id + ", name=" + name + ", gender=" + gender + ", salary=" + salary + ", address="
+				+ address + "]";
 	}
 
 	
