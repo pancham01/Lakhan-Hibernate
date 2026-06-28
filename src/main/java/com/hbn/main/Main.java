@@ -41,6 +41,10 @@ public class Main {
 		e1.setSalary(55000);
 		e1.setAddress(listOfAdd);
 		
+		add1.setEmployee(e1);
+		add2.setEmployee(e1);
+		add3.setEmployee(e1);
+		
 		
 		session.persist(e1);
 		
@@ -51,10 +55,16 @@ public class Main {
 
 		Session session = HibernateConfig.getSessionFactory().openSession();
 		
-		saveRecord(session);	
+//		saveRecord(session);
 		
 		
+//		Employee employee = session.find(Employee.class, 1);
+//		System.out.println(employee);
+//		
+		Address address = session.find(Address.class, 2);
 		
+		System.out.println(address);
+		System.out.println(address.getEmployee());
 	
 	}
 
